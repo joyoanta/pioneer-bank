@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Pioneer Bank</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id= "login-area">
+        <h1 class=" text-center">Welcome to Pioneer Bank</h1>
+        <div class="submit-area">
+            <h4>Log In</h4>
+            <br>
+            <input class="form-control" type="text" placeholder="Give your Email">
+            <br>
+            <input class="form-control" type="password" placeholder="Password">
+            <br>
+            <button id="login" class=" btn btn-success">Enter</button>
+        </div>
+
+    </div>
+
+    <div id="transection-area">
+        <h1 class="mb-5">Transection Area</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="deposite status">
+                    <h5>Deposite</h5>
+                    <h2>$ <span id="current-deposite">00</span></h2>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ <span id="withdraw-balance">00</span></h2>    
+                </div>
+            </div>
+            <div class="col-md-4 ">
+               <div class="balance status">
+                 
+                <h5>Balance</h5>
+                <h2>$ <span id="current-balance">00</span> </h2>
+
+               </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposite</h4>
+                    <input id="deposite-area" class="form-control" type="text" placeholder="Amount you want to Deposite">
+                    <br>
+                    <button id="deposite-button" class="btn-success">Deposite</button>
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input id="withdraw-area" class="form-control" type="text" placeholder="Amount you want to withdraw">
+                    <br>
+                    <button id="withdraw-button" class="btn-success">Withdraw</button>   
+                </div>
+            </div>
+        </div> 
+
+    </div>
+
+ 
+    <script>
+
+        // Login button event handeller 
+
+
+        const loginBtn = document.getElementById('login');
+        loginBtn.addEventListener ('click', function(){
+        console.log("I have pressed for log in")
+
+        const loginArea = document.getElementById("login-area") 
+        loginArea.style.display = "none";
+
+        const transArea = document.getElementById("transection-area")
+        transArea.style.display = "block";
+        })
+
+
+        // Deposite button event handeler 
+
+       const depositeBtn = document.getElementById("deposite-button") ;
+       depositeBtn.addEventListener("click", function(){
+
+        const depositeArea =  document.getElementById("deposite-area").value;
+        var depositeAmount = parseFloat(depositeArea);
+        console.log(depositeAmount)
+
+
+       document.getElementById("deposite-area").value =  "";
+
+        spanUpdate ("current-deposite",depositeAmount)
+        spanUpdate("current-balance", depositeAmount);
+
+       })
+
+
+       // withdraw button event handeler 
+
+      var withdrawButton =  document.getElementById("withdraw-button"); 
+      withdrawButton.addEventListener("click",function () {
+
+       var withdrawArea =  document.getElementById("withdraw-area").value
+       var withdrawAmount = parseFloat(withdrawArea);
+       document.getElementById("withdraw-area").value = "";
+
+       spanUpdate("withdraw-balance", withdrawAmount);
+       adjustBalance("current-balance", withdrawAmount)
+
+       
+          
+      })
+
+
+
+     
+
+// Fuction defined for Update
+
+     function spanUpdate(id,num) {
+
+      var current =  document.getElementById(id).innerText;
+      var currentNum = parseFloat(current);
+      var total =  currentNum + num; 
+      document.getElementById(id).innerText = total; 
+           
+       }
+
+
+       function adjustBalance(id,num) {
+
+     var current =  document.getElementById(id).innerText;
+      var currentNum = parseFloat(current);
+      var total =  currentNum - num; 
+      document.getElementById(id).innerText = total; 
+           
+
+
+           
+       }
+     
+
+    </script>
+    
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
